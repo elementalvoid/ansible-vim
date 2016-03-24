@@ -1,7 +1,8 @@
 function! s:isAnsible()
   let filepath = expand("%:p")
   let filename = expand("%:t")
-  if filepath =~ '\v/(tasks|roles|handlers)/.*\.ya?ml$' | return 1 | en
+  if filepath =~ '\v/(playbooks|roles)/.*\.ya?ml$' | return 1 | en
+  if filepath =~ '\v/roles/[^/]*/(defaults|files|handlers|meta|tasks|templates|vars)/.*\.ya?ml$' | return 1 | en
   if filepath =~ '\v/(group|host)_vars/' | return 1 | en
   if filename =~ '\v(playbook|site|main)\.ya?ml$' | return 1 | en
 
