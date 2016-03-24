@@ -4,6 +4,7 @@ function! s:isAnsible()
   if filepath =~ '\v/(playbooks|roles)/.*\.ya?ml$' | return 1 | en
   if filepath =~ '\v/roles/[^/]*/(defaults|handlers|meta|tasks|vars)/.*\.ya?ml$' | return 1 | en
   if filepath =~ '\v/((group|host)_)?vars/' | return 1 | en
+  if filepath =~ '\v/inventory/hosts' | return 1 | en
   if filename =~ '\v(playbook|site|main)\.ya?ml$' | return 1 | en
 
   let shebang = getline(1)
@@ -24,4 +25,4 @@ endfunction
 
 :au BufNewFile,BufRead * if s:isAnsible() | set ft=ansible | en
 :au BufNewFile,BufRead * if s:isAnsibleTemplate() | set ft=ansible_template | en
-:au BufNewFile,BufRead hosts set ft=ansible_hosts
+:au BufNewFile,BufRead hosts if s:isAnsible() | set ft=ansible_hosts | en
