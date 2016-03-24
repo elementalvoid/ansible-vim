@@ -3,7 +3,7 @@ function! s:isAnsible()
   let filename = expand("%:t")
   if filepath =~ '\v/(playbooks|roles)/.*\.ya?ml$' | return 1 | en
   if filepath =~ '\v/roles/[^/]*/(defaults|handlers|meta|tasks|vars)/.*\.ya?ml$' | return 1 | en
-  if filepath =~ '\v/(group|host)_vars/' | return 1 | en
+  if filepath =~ '\v/((group|host)_)?vars/' | return 1 | en
   if filename =~ '\v(playbook|site|main)\.ya?ml$' | return 1 | en
 
   let shebang = getline(1)
